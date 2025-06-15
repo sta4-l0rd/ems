@@ -16,6 +16,19 @@ public class Employee {
     private Long id;
 
     private String name;
+    private String dept;
+    private double salary;
+    private LocalDate dateOfJoinng;
+
+    public Employee(String name, String dept, double salary, LocalDate dateOfJoinng) {
+        this.name = name;
+        this.dept = dept;
+        this.salary = salary;
+        this.dateOfJoinng = dateOfJoinng;
+    }
+
+    public Employee() {
+    }
 
     public String getName() {
         return name;
@@ -25,8 +38,6 @@ public class Employee {
         this.name = name;
     }
 
-    private String dept;
-
     public String getDept() {
         return dept;
     }
@@ -34,8 +45,6 @@ public class Employee {
     public void setDept(String dept) {
         this.dept = dept;
     }
-
-    private double salary;
 
     public double getSalary() {
         return salary;
@@ -45,25 +54,12 @@ public class Employee {
         this.salary = salary;
     }
 
-    private LocalDate dateOfJoinng;
-
     public LocalDate getDateOfJoinng() {
         return dateOfJoinng;
     }
 
     public void setDateOfJoinng(LocalDate dateOfJoinng) {
         this.dateOfJoinng = dateOfJoinng;
-    }
-
-    public Employee(Long id, String name, String dept, double salary, LocalDate dateOfJoinng) {
-        this.id = id;
-        this.name = name;
-        this.dept = dept;
-        this.salary = salary;
-        this.dateOfJoinng = dateOfJoinng;
-    }
-
-    public Employee() {
     }
 
 }

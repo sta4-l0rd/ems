@@ -6,6 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sta4l0rd.ems.empDTO.EmployeeAllDetailsDTO;
+import com.sta4l0rd.ems.empDTO.EmployeeDTO;
+import com.sta4l0rd.ems.empDTO.EmployeesListDTO;
 import com.sta4l0rd.ems.entity.Employee;
 import com.sta4l0rd.ems.repos.EmployeeRepo;
 import com.sta4l0rd.ems.service.EmployeeService;
@@ -17,15 +20,24 @@ public class EmployeeServiceImpl implements EmployeeService {
     EmployeeRepo employeeRepo;
 
     @Override
-    public List<Employee> getAllEmployees() {
-        List<Employee> allEmployees = new ArrayList<>();
+    public EmployeesListDTO getAllEmployees() {
+        List<EmployeeDTO> employees = new ArrayList<>();
         for (Employee item : employeeRepo.findAll()) {
-            allEmployees.add(item);
+            employees.add(new EmployeeDTO(item.getName(), item.getDept()));
         }
-        return allEmployees;
+        return new EmployeesListDTO(employees);
     }
 
-    public void createEmployee(Employee emp){
-        employeeRepo.save(emp);
+    @Override
+    public EmployeeAllDetailsDTO createEmployee(EmployeeAllDetailsDTO employeeAllDetailsDTO) {
+        if (employeeAllDetailsDTO != null && employeeAllDetailsDTO.getName() != null
+                && !employeeAllDetailsDTO.getName().isEmpty()) {
+            employeeRepo.save(new Employee(employeeAllDetailsDTO.getName(), employeeAllDetailsDTO.getDept(),
+                    employeeAllDetailsDTO.getSalary(), employeeAllDetailsDTO.getDateOfJoinng()));
+            return employeeAllDetailsDTO;
+        }
+        else{
+            return null;
+        }
     }
 }

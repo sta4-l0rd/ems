@@ -1,9 +1,10 @@
 package com.sta4l0rd.ems.service;
 
-import java.util.List;
-
+import com.sta4l0rd.ems.empDTO.EmployeeAllDetailsDTO;
+import com.sta4l0rd.ems.empDTO.EmployeesListDTO;
 import com.sta4l0rd.ems.entity.Employee;
 
 public interface EmployeeService {
-    public List<Employee> getAllEmployees();
+    public EmployeesListDTO getAllEmployees();
+    public EmployeeAllDetailsDTO createEmployee(EmployeeAllDetailsDTO employeeAllDetailsDTO);
 }
